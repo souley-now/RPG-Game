@@ -84,6 +84,7 @@ public class HumanPlayer {
 
     // assign generatedLevel a level based on randomInt's value
     if(randomInt == 0){
+
       generatedLevel = "low";
     }
     else if(randomInt == 1){
@@ -129,10 +130,9 @@ public class HumanPlayer {
    * @return String of "attack" or "block" or null
    */
   public String validateMove(String move){
-
-    if (move.toLowerCase().equals('a')){
+    if (move.toLowerCase().charAt(0) == 'a'){
       return "attack";
-    } else if (move.toLowerCase().equals('b')) {
+    } else if (move.toLowerCase().charAt(0) == 'b') {
       return "block";
     } else {
       System.out.println("Please enter an 'a' or 'b'");
@@ -150,19 +150,19 @@ public class HumanPlayer {
 
   public Unit selectTarget(String targetName, ComputerPlayer computer){
 
-  // Retrieve all computer units
-  Unit[] computerUnits = {computer.getCriati(), computer.getLedde(), computer.getTyllion() };
-  
-  // Loop through each unit and check if the targetName matches
-  for (Unit unit : computerUnits) {
-      if (unit.equals(targetName)) {
-          if (unit.getHp() > 0) {
-              return unit;
-          } else {
-              System.out.println("The target has already been vanquished.");
-              return null;
-          }
-      }
+    // Retrieve all computer units
+    Unit[] computerUnits = {computer.getCriati(), computer.getLedde(), computer.getTyllion() };
+    
+    // Loop through each unit and check if the targetName matches
+    for (Unit unit : computerUnits) {
+        if (unit.name.equals(targetName)) {
+            if (unit.getHp() > 0) {
+                return unit;
+            } else {
+                System.out.println("The target has already been vanquished.");
+                return null;
+            }
+        }
   }
   // If no matching unit found
   System.out.println("The target is not a member of the enemy’s forces.");

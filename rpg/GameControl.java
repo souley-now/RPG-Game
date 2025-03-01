@@ -73,7 +73,7 @@ public class GameControl {
     if (getWinner(turn) != null) return;
 
     System.out.println();
-    System.out.println("Job level " + this.human.getFalia().getJob() + ". Level " + this.human.getFalia().getLevel());
+    System.out.println("Job " + this.human.getAma().getJob() + ". Level " + this.human.getAma().getLevel());
     this.human.moveUnit(this.human.getAma(), this.computer);
     
     this.computer.resetTemporaryDefense();
@@ -102,6 +102,7 @@ public class GameControl {
    * Return null if both players are still alive and the current turn is less than 10.
    */
   public String getWinner(int turn) {
+
     int computerPoints = this.computer.getCriati().getHp() + this.computer.getLedde().getHp() + this.computer.getTyllion().getHp();
     int humanPoints = this.human.getAma().getHp() + this.human.getErom().getHp() + this.human.getFalia().getHp();
 

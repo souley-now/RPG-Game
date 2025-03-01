@@ -89,7 +89,7 @@ public class Unit {
 
   public int getLevel() {
 
-    return this.getLevel();
+    return this.level;
 
   }
 
@@ -101,7 +101,7 @@ public class Unit {
 
   public String getJob() {
 
-    return this.getJob();
+    return this.job;
   }
 
   /**
@@ -111,9 +111,7 @@ public class Unit {
    */
 
   public int getHp() {
-
-    return this.getHp();
-
+    return this.hp;
   }
 
   /**
@@ -190,7 +188,7 @@ public class Unit {
 
     double multiplier = 1.0;
 
-    // check which attach method the player chooses
+    // check which attack method the player chooses
     if ("strong".equals(attackerStrength)) {
         multiplier = 1.2;
     } else if ("weak".equals(attackerStrength)) {
