@@ -72,14 +72,13 @@ public class Unit {
         this.level = random.nextInt(7,11); // 7 to 11
     }
 
-    double multiplier = this.level / 10; // multiplier to a tenth of the level
+    double multiplier = (double) (this.level / 10); // multiplier to a tenth of the level
     this.hp = (int) Math.round(multiplier * 100); // max value 100
     this.attack = (int) Math.round(multiplier * 20); // max value 20
     this.evasion = (int) Math.round(multiplier * 5); // max value 5
     this.defense = (int) Math.round(multiplier * 20); // max value 20
 
   }
-
 
   /**
    * Returns this unit's level.
@@ -121,7 +120,7 @@ public class Unit {
    */
 
   public void setHp(int hp) {
-    this.hp = hp;
+    this.hp = Math.max(hp, 0);
   }
 
   /**
@@ -167,10 +166,7 @@ public class Unit {
 
   public void printCurrentStatus(){
     
-    System.out.println(this.name);
-    System.out.println(this.level);
-    System.out.println(this.job);
-    System.out.println(this.hp);
+    System.out.println(this.name + " is a level " + this.level + " " + this.job + " " + this.hp + " HP." );
 
     if (this.hp < 1) {
       System.out.println("This unit is knocked out!");
@@ -184,11 +180,10 @@ public class Unit {
    * @return int representing the total damage this unit will deal when attacking
    */
 
-  public int attack(String attackerStrength){
-
+   public int attack(String attackerStrength) {
     double multiplier = 1.0;
 
-    // check which attack method the player chooses
+    // Check which attack method the player chooses
     if ("strong".equals(attackerStrength)) {
         multiplier = 1.2;
     } else if ("weak".equals(attackerStrength)) {
@@ -196,10 +191,11 @@ public class Unit {
     }
 
     double attackMax = 50.0;
-    double rawDamage = attackMax * (this.attack / 30.0);
+    double rawDamage = (this.attack / 20.0) * attackMax;
     int damage = (int) Math.round(rawDamage * multiplier);
 
     return damage;
+
   }
 
   /**

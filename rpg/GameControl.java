@@ -29,7 +29,7 @@ public class GameControl {
     System.out.println("Combat is turn based; all your love units will take a turn and then all the computer's live units will take a turn.");
     System.out.println("You have 10 turns to defeat the computer. If both players still have units standing, you only win ");
     System.out.println("if the combined HP of your units exceeds the computer's.");
-    System.out.println();
+    System.out.println("========================================================");
   }
   
   /**
@@ -133,42 +133,46 @@ public class GameControl {
    */
   public static void main(String[] args){
 
-  GameControl gC = new GameControl();
-  gC.printInstructions();
+    GameControl gC = new GameControl();
+    gC.printInstructions();
 
-  String winner = null;
-  boolean gameWon = false;
+    String winner = null;
+    boolean gameWon = false;
 
-  for (int turn = 0; turn < 10; turn++) {
-      System.out.println("Turn: " + turn);
-      gC.printStatus();
+    int turn = 0;
+    while (turn < 10) {
+            gC.printStatus();
+            System.out.println("------------------------------------------------");
+            System.out.println("Turn: " + turn);
 
-      gC.takeHumanTurn(turn);
-      winner = gC.getWinner(turn);
-      if (winner != null) {
-          gameWon = true;
-          break;
-      }
+            gC.takeHumanTurn(turn);
+            winner = gC.getWinner(turn);
+            if (winner != null) {
+                    gameWon = true;
+                    break;
+            }
 
-      gC.printStatus();
-      gC.takeComputerTurn();
-      winner = gC.getWinner(turn);
-      if (winner != null) {
-          gameWon = true;
-          break;
-      }
-  } 
+            gC.printStatus();
+            gC.takeComputerTurn();
+            winner = gC.getWinner(turn);
+            if (winner != null) {
+                    gameWon = true;
+                    break;
+            }
 
-  if (!gameWon) {
-      winner = gC.getWinner(10); // Determine the winner after 10 turns if no one has won yet
-  }
-
-  if ("computer".equals(winner)) {
-        System.out.println("All your heroes have been defeated, enemy forces have won!");
-  } else if ("human".equals(winner)) {
-        System.out.println("You've defeated the enemy!");
-  } else {
-        System.out.println("Nobody wins, it is a tie!");
-        }
+            turn++;
     }
+
+    if (!gameWon) {
+        winner = gC.getWinner(10); // Determine the winner after 10 turns if no one has won yet
+    }
+
+    if ("computer".equals(winner)) {
+            System.out.println("All your heroes have been defeated, enemy forces have won!");
+    } else if ("human".equals(winner)) {
+            System.out.println("You've defeated the enemy!");
+    } else {
+            System.out.println("Nobody wins, it is a tie!");
+            }
+        }
 }
