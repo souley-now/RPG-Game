@@ -155,7 +155,7 @@ public class HumanPlayer {
     
     // Loop through each unit and check if the targetName matches
     for (Unit unit : computerUnits) {
-        if (unit.name.equals(targetName)) {
+        if (unit.name.equalsIgnoreCase(targetName)) {
             if (unit.getHp() > 0) {
                 return unit;
             } else {

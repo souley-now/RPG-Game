@@ -85,9 +85,9 @@ public class GameControl {
    */
   public void takeComputerTurn(){
 
-    this.computer.moveUnit("Criati", this.computer.getCriati(), this.human.getFalia(), "attack");
-    this.computer.moveUnit("Ledde", this.computer.getLedde(), this.human.getErom(), "attack");
-    this.computer.moveUnit("Tyllion", this.computer.getTyllion(), this.human.getAma(), "attack");
+    this.computer.moveUnit("attack", this.computer.getCriati(), this.human.getFalia(), "strong");
+    this.computer.moveUnit("attack", this.computer.getLedde(), this.human.getErom(), "strong");
+    this.computer.moveUnit("attack", this.computer.getTyllion(), this.human.getAma(), "strong");
 
     this.human.resetTemporaryDefense();
   

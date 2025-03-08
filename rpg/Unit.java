@@ -72,7 +72,7 @@ public class Unit {
         this.level = random.nextInt(7,11); // 7 to 11
     }
 
-    double multiplier = (double) (this.level / 10); // multiplier to a tenth of the level
+    double multiplier = (double) (this.level / 10.0); // multiplier to a tenth of the level
     this.hp = (int) Math.round(multiplier * 100); // max value 100
     this.attack = (int) Math.round(multiplier * 20); // max value 20
     this.evasion = (int) Math.round(multiplier * 5); // max value 5
@@ -120,7 +120,7 @@ public class Unit {
    */
 
   public void setHp(int hp) {
-    this.hp = Math.max(hp, 0);
+    this.hp = hp;
   }
 
   /**
@@ -191,7 +191,7 @@ public class Unit {
     }
 
     double attackMax = 50.0;
-    double rawDamage = (this.attack / 20.0) * attackMax;
+    double rawDamage = (this.attack / 30.0) * attackMax;
     int damage = (int) Math.round(rawDamage * multiplier);
 
     return damage;
@@ -214,13 +214,16 @@ public class Unit {
    * Note: This method does not return anything.
    * @param damage int representing the incoming damage from an opposing unit
    */
+
   public void receiveDamage(int damage){
     
     // Perform evasion check
-    int num = random.nextInt(21);
-    if (num <= this.evasion) {
+    if (this.evasion > 0) {
+      int num = random.nextInt(21);
+      if (num <= this.evasion) {
         System.out.println("They dodged!");
         return;
+      }
     }
 
     // Calculate defense adjustment
@@ -236,7 +239,6 @@ public class Unit {
     }
 
     // Print damage received and remaining HP
-    System.out.println("Damage Received: " + damageReceived);
-    System.out.println("Remaining HP: " + this.hp);
+    System.out.println(this.name + " received: " + damageReceived + " damage. And has " + this.hp + " HP remaining." );
   }
 }
